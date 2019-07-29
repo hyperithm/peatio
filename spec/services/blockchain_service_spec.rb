@@ -38,7 +38,8 @@ describe BlockchainService do
                          .returns(fake_adapter)
                          .at_least_once
 
-    fake_adapter.stubs(:latest_block_number).returns(4)
+    service.stubs(:current_height).returns(4)
+    fake_adapter.stubs(:latest_block_number).never
   end
 
   # Deposit context: (mock fetch_block)
