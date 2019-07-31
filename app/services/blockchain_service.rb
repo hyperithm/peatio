@@ -85,7 +85,7 @@ class BlockchainService
       end
 
     deposit.update_column(:block_number, transaction.block_number) if deposit.block_number != transaction.block_number
-    if deposit.confirmations >= @blockchain.min_confirmations && deposit.accept!
+    if (current_height - deposit.block_number) >= @blockchain.min_confirmations && deposit.accept!
       deposit
     else
       nil
@@ -107,7 +107,7 @@ class BlockchainService
 
     if transaction.status.failed?
       withdrawal.fail!
-    elsif transaction.status.success? && withdrawal.confirmations >= @blockchain.min_confirmations
+    elsif transaction.status.success? && (current_height - withdraw.block_number) >= @blockchain.min_confirmations
       withdrawal.success!
     end
   end

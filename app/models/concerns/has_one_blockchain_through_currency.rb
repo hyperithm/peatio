@@ -21,7 +21,7 @@ module HasOneBlockchainThroughCurrency
   end
 
   def latest_block_number
-    blockchain.blockchain_api.latest_block_number
+    blockchain.blockchain_api.current_height
   end
 
   def confirmations
