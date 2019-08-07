@@ -97,8 +97,8 @@ module APIv2
 
         key = "peatio:#{market}:k:#{period}"
 
-        ts = JSON.parse(redis.lindex(key, 0)).first
-        te = JSON.parse(redis.lindex(key, -1)).first
+        ts = JSON.parse(KlineDB.redis.lindex(key, 0)).first
+        te = JSON.parse(KlineDB.redis.lindex(key, -1)).first
 
         start = (from - ts) / 60 / period
         start = 0 if start < 0
@@ -106,7 +106,7 @@ module APIv2
         stop = ((to - ts) / 60 / period).ceil + 1
         stop = 0 if stop < 0
 
-        length = redis.llen(key)
+        length = KlineDB.redis.llen(key)
 
         tv = {
             t: [],
@@ -117,7 +117,7 @@ module APIv2
             v: [],
             s: 'ok'
         }
-        k = JSON.parse('[%s]' % redis.lrange(key, start, stop).join(','))
+        k = JSON.parse('[%s]' % KlineDB.redis.lrange(key, start, stop).join(','))
         outOfRange = ts > to || te < from
         if k.length > 0 && !outOfRange
         k.each do |data|
