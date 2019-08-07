@@ -156,10 +156,6 @@ module APIv2
     Market.where(id: symbol).first
   end
 
-  def supported_resolutions()
-    ['1', '5', '15', '30', '60', '120', '240', '360', '720', 'D', '3D', 'W']
-  end
-
   def convertResolutionToPeriod(resolution)
     if r = Integer(resolution) rescue nil
       r

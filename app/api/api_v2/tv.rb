@@ -40,7 +40,7 @@ module APIv2
                     value: "bitcoin"
                 }
             ],
-            supported_resolutions: supported_resolutions
+            supported_resolutions: ['1', '5', '15', '30', '60', '120', '240', '360', '720', 'D', '3D', 'W']
         }
       end
   
@@ -67,7 +67,7 @@ module APIv2
             "has_intraday": false,
             "has_no_volume": false,
             "description": symbolInfo[:id],
-            "supported_resolutions": supported_resolutions,
+            "supported_resolutions": ['1', '5', '15', '30', '60', '120', '240', '360', '720', 'D', '3D', 'W'],
             "ticker": symbolInfo[:id].upcase,
             "has_intraday": true,
         }
