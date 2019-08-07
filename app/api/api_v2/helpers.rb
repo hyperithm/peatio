@@ -149,13 +149,6 @@ module APIv2
 
   end
 
-  def prepareSymbolInfo(symbolName)
-    data = symbolName.split(':')
-    symbol = (data.length > 1 ? data[1] : symbolName).upcase
-
-    Market.where(id: symbol).first
-  end
-
   def convertResolutionToPeriod(resolution)
     if r = Integer(resolution) rescue nil
       r
