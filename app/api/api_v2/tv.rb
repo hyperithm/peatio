@@ -52,7 +52,7 @@ module APIv2
       desc 'Get TradingView Symbols info'
       get "tv/symbols" do
         data =  params[:symbol].split(':')
-        symbol = (data.length > 1 ? data[1] : symbolName).upcase
+        symbol = (data.length > 1 ? data[1] : params[:symbol]).upcase
 
         symbolInfo = Market.where(id: symbol).first
 
